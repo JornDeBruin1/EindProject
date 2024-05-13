@@ -1,0 +1,7 @@
+{
+  "name": "Eind_project",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
