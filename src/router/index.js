@@ -19,12 +19,12 @@ const routes = [
 				component: () => import('@/views/HomePage.vue'),
 			},
 			{
-				path: 'tab2',
-				component: () => import('@/views/Tab2Page.vue'),
+				path: 'favorite',
+				component: () => import('@/views/FavoritePage.vue'),
 			},
 			{
-				path: 'tab3',
-				component: () => import('@/views/Tab3Page.vue'),
+				path: 'setting',
+				component: () => import('@/views/SettingPage.vue'),
 			},
 		],
 	},
