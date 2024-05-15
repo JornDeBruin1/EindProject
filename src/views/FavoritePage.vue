@@ -12,12 +12,12 @@
 				</ion-toolbar>
 			</ion-header>
 
-			<ExploreContainer name="Favorite page" />
+			<FavoriteContainer name="Favorite page" />
 		</ion-content>
 	</ion-page>
 </template>
 
 <script setup>
 	import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-	import ExploreContainer from '@/components/ExploreContainer.vue';
+	// import FavoriteContainer from '@/components/FavoriteContainer.vue';
 </script>

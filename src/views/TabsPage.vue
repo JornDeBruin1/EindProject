@@ -4,18 +4,18 @@
 			<ion-router-outlet></ion-router-outlet>
 			<ion-tab-bar>
 				<ion-tab-button tab="Home" href="/tabs/home">
-					<ion-icon aria-hidden="true" :icon="home" />
-					<ion-label class="text-2xl">Home</ion-label>
+					<ion-icon class="text-[31px]" aria-hidden="true" :icon="home" />
+					<ion-label class="pb-[9px] text-[19px]">Home</ion-label>
 				</ion-tab-button>
 
 				<ion-tab-button tab="favorite" href="/tabs/favorite">
-					<ion-icon aria-hidden="true" :icon="heart"></ion-icon>
-					<ion-label class="text-2xl">favorite</ion-label>
+					<ion-icon class="text-[31px]" aria-hidden="true" :icon="heart"></ion-icon>
+					<ion-label class="pb-[9px] text-[19px]">Favorite</ion-label>
 				</ion-tab-button>
 
 				<ion-tab-button tab="setting" href="/tabs/setting">
-					<ion-icon aria-hidden="true" :icon="cog"></ion-icon>
-					<ion-label class="text-2xl">Settings</ion-label>
+					<ion-icon class="text-[31px]" aria-hidden="true" :icon="cog"></ion-icon>
+					<ion-label class="pb-[9px] text-[19px]">Settings</ion-label>
 				</ion-tab-button>
 			</ion-tab-bar>
 		</ion-tabs>
