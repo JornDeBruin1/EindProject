@@ -1,18 +1,23 @@
 <template>
 	<ion-page>
-		<ion-header>
+		<ion-header class="bg-blue-500">
 			<ion-toolbar>
-				<ion-title>Quizes</ion-title>
+				<ion-title class="bg-gray-200">Quizes</ion-title>
 			</ion-toolbar>
 		</ion-header>
 		<ion-content :fullscreen="true">
 			<ion-header class="shadow-lg" collapse="condense">
-				<ion-toolbar>
+				<ion-toolbar class="	">
 					<ion-title size="large">Quizes</ion-title>
 				</ion-toolbar>
 			</ion-header>
 
-			<HomeContainer name="Home page" />
+			<HomeContainer
+				v-for="quiz in quizes"
+				:key="quiz.id"
+				:quiz="quiz"
+				name="Home page"
+			/>
 		</ion-content>
 	</ion-page>
 </template>
@@ -31,4 +36,15 @@
 		IonCardTitle,
 	} from '@ionic/vue';
 	import HomeContainer from '@/components/HomeContainer.vue';
+	import { ref } from 'vue';
+	import q from '@/data/quiz.json';
+	const quizes = ref(q);
 </script>
+<style scoped>
+	ion-toolbar {
+		--tw-bg-opacity: 1;
+		--background: rgb(229 231 235 / var(--tw-bg-opacity));
+		--color: black;
+		--z-index: 20px;
+	}
+</style>

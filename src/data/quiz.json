@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"img": "/image/sport.png",
+		"name": "Sport",
+		"questions": [{}]
+	},
+	{
+		"id": 2,
+		"img": "/image/geschiedenis.jpg",
+		"name": "Geschiedenis",
+		"questions": [{}]
+	},
+	{
+		"id": 3,
+		"img": "/image/algemene-kennis.jpg",
+		"name": "Algemene kennis",
+		"questions": [{}]
+	},
+	{
+		"id": 4,
+		"img": "/image/geografie.jpeg",
+		"name": "GeoGrafie",
+		"questions": [{}]
+	},
+	{
+		"id": 5,
+		"img": "/image/film.jpg",
+		"name": "Film",
+		"questions": [{}]
+	}
+]
