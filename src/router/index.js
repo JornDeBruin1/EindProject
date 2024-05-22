@@ -1,10 +1,16 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import TabsPage from '../views/TabsPage.vue';
+import QuizPage from '../views/QuizPage.vue';
 
 const routes = [
 	{
 		path: '/',
 		redirect: '/tabs/home',
+	},
+	{
+		name: 'QuizView',
+		path: '/tabs/quiz/:id',
+		component: QuizPage,
 	},
 	{
 		path: '/tabs/',

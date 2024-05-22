@@ -1,17 +1,14 @@
 <template>
-	<ion-page>
-		<ion-header class="bg-blue-500">
+	<ion-page id="main-content">
+		<ion-header>
 			<ion-toolbar>
-				<ion-title class="bg-gray-200">Quizes</ion-title>
+				<ion-buttons>
+					<ion-menu-button></ion-menu-button>
+				</ion-buttons>
+				<ion-title>Quizes</ion-title>
 			</ion-toolbar>
 		</ion-header>
 		<ion-content :fullscreen="true">
-			<ion-header class="shadow-lg" collapse="condense">
-				<ion-toolbar class="	">
-					<ion-title size="large">Quizes</ion-title>
-				</ion-toolbar>
-			</ion-header>
-
 			<HomeContainer
 				v-for="quiz in quizes"
 				:key="quiz.id"
@@ -24,6 +21,9 @@
 
 <script setup>
 	import {
+		IonButtons,
+		IonMenu,
+		IonMenuButton,
 		IonPage,
 		IonHeader,
 		IonToolbar,

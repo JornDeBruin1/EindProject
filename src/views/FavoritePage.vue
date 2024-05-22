@@ -2,16 +2,13 @@
 	<ion-page>
 		<ion-header>
 			<ion-toolbar>
-				<ion-title>Favorite</ion-title>
+				<ion-buttons>
+					<ion-menu-button></ion-menu-button>
+				</ion-buttons>
+				<ion-title>Favorites</ion-title>
 			</ion-toolbar>
 		</ion-header>
 		<ion-content :fullscreen="true">
-			<ion-header collapse="condense">
-				<ion-toolbar>
-					<ion-title size="large">Favorite</ion-title>
-				</ion-toolbar>
-			</ion-header>
-
 			<FavoriteContainer name="Favorite page" />
 		</ion-content>
 	</ion-page>

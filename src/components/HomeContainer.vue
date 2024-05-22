@@ -1,15 +1,13 @@
 <template>
 	<div class="w-full bg-gray-200">
-		<ion-card>
+		<ion-card @click="navigateToQuiz()">
 			<img class="p-4" :src="quiz.img" alt="" />
 			<ion-card-header>
 				<ion-card-title>{{ quiz.name }}</ion-card-title>
 				<ion-card-subtitle>{{ quiz.name }}</ion-card-subtitle>
 			</ion-card-header>
 
-			<ion-card-content>
-				Here's a small text description for the sport content. Nothing more, nothing less.
-			</ion-card-content>
+			<ion-card-content> {{ quiz.questions.length }} questions </ion-card-content>
 		</ion-card>
 	</div>
 </template>
@@ -26,4 +24,8 @@
 	import { useRouter } from 'vue-router';
 
 	const { quiz } = defineProps(['quiz']);
+	const router = useRouter();
+	const navigateToQuiz = () => {
+		router.push(`/tabs/quiz/${quiz.id}`);
+	};
 </script>
