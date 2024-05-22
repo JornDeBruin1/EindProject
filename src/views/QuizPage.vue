@@ -31,11 +31,21 @@
 				<ion-title>Question</ion-title>
 			</ion-toolbar>
 		</ion-header>
-		<ion-content :fullscreen="true"></ion-content>
+		<ion-content :fullscreen="true">
+			<Question
+				:question="quiz.questions[currentQuestionIndex]"
+				@selectOption="onOptionSelected"
+			/>
+		</ion-content>
 	</ion-page>
 </template>
 
 <script setup>
+	import Question from '../components/Question.vue';
+	import q from '@/data/quiz.json';
+	import { useRoute } from 'vue-router';
+	import { home, heart, cog } from 'ionicons/icons';
+	import { ref, computed, watch } from 'vue';
 	import {
 		IonButtons,
 		IonMenu,
@@ -51,5 +61,12 @@
 		IonCardSubtitle,
 		IonCardTitle,
 	} from '@ionic/vue';
-	import { home, heart, cog } from 'ionicons/icons';
+
+	const route = useRoute();
+	const quizId = parseInt(route.params.id);
+	const quizes = ref(q);
+	const quiz = computed(() => quizes.value.find((quiz) => quiz.id === quizId));
+	// const quiz = find(quizes.value, (q) => q.id === quizId);
+
+	const currentQuestionIndex = ref(0);
 </script>

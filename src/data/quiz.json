@@ -12,7 +12,7 @@
 		"questions": [
 			{
 				"id": 1,
-				"text": "Welke vulkaan bedolf Pompeï in 79 na Christus?",
+				"title": "Welke vulkaan bedolf Pompeï in 79 na Christus?",
 				"options": [
 					{
 						"id": 1,
@@ -55,7 +55,7 @@
 		"questions": [
 			{
 				"id": 1,
-				"text": "Wat is de hoofdstad van Australië",
+				"title": "Wat is de hoofdstad van Australië",
 				"options": [
 					{
 						"id": 1,
@@ -85,7 +85,7 @@
 			},
 			{
 				"id": 2,
-				"text": "Wat is de grootste oceaan te wereld",
+				"title": "Wat is de grootste oceaan te wereld",
 				"options": [
 					{
 						"id": 1,
@@ -115,7 +115,7 @@
 			},
 			{
 				"id": 3,
-				"text": "Welke Europese hoofdstad heeft als bijnaam 'de eeuwige stad'? ",
+				"title": "Welke Europese hoofdstad heeft als bijnaam 'de eeuwige stad'? ",
 				"options": [
 					{
 						"id": 1,
