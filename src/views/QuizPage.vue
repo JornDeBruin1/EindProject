@@ -32,16 +32,25 @@
 			</ion-toolbar>
 		</ion-header>
 		<ion-content :fullscreen="true">
+			<QuizHeader :CurrentQuestion="CurrentQuestion" :questionLength="questionLength" />
 			<Question
+				v-if="!showResult"
 				:question="quiz.questions[currentQuestionIndex]"
 				@selectOption="onOptionSelected"
+			/>
+			<Result
+				v-else
+				:quizQuestionlength="quiz.questions.length"
+				:numberOfCorrectAnswers="numberOfCorrectAnswers"
 			/>
 		</ion-content>
 	</ion-page>
 </template>
 
 <script setup>
+	//alle imports
 	import Question from '../components/Question.vue';
+	import QuizHeader from '../components/QuizHeader.vue';
 	import q from '@/data/quiz.json';
 	import { useRoute } from 'vue-router';
 	import { home, heart, cog } from 'ionicons/icons';
@@ -60,13 +69,38 @@
 		IonCardHeader,
 		IonCardSubtitle,
 		IonCardTitle,
+		IonIcon,
+		IonLabel,
 	} from '@ionic/vue';
 
+	//id uit de route halen
 	const route = useRoute();
 	const quizId = parseInt(route.params.id);
 	const quizes = ref(q);
+	//dat de quiz uit de quizes array wordt gehaald op basis van het id
 	const quiz = computed(() => quizes.value.find((quiz) => quiz.id === quizId));
-	// const quiz = find(quizes.value, (q) => q.id === quizId);
-
 	const currentQuestionIndex = ref(0);
+	const showResult = ref(false);
+
+	// aantal vragen
+	const questionLength = computed(
+		() => `${currentQuestionIndex.value + 1}/${quiz.value.questions.length || 0}`
+	);
+
+	//huidige vraag
+	const CurrentQuestion = computed(
+		() => `${currentQuestionIndex.value + 1}/${quiz.value.questions.length || 0}`
+	);
+
+	const onOptionSelected = (isCorrect) => {
+		if (isCorrect) {
+			numberOfCorrectAnswers.value++;
+		}
+
+		if (quiz.questions.length - 1 === currentQuestionIndex.value) {
+			showResult.value = true;
+		}
+
+		currentQuestionIndex.value++;
+	};
 </script>

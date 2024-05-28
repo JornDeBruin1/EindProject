@@ -26,10 +26,11 @@
 		IonCardTitle,
 		IonCardSubtitle,
 		IonRadioGroup,
-		IonIcon,
 	} from '@ionic/vue';
 	import { defineProps, defineEmits } from 'vue';
+	//vraag en antwoorden op halen uit de json
 	const { question } = defineProps(['question']);
+	//kijk voor geselecteerde optie om te kijken of het antwoord goed is
 	const emit = defineEmits(['selectOption']);
 	const emitSelectedOption = (isCorrect) => {
 		emit('selectOption', isCorrect);
