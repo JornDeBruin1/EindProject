@@ -38,11 +38,11 @@
 				:question="quiz.questions[currentQuestionIndex]"
 				@selectOption="onOptionSelected"
 			/>
-			<Result
+			<!-- <Result
 				v-else
 				:quizQuestionlength="quiz.questions.length"
 				:numberOfCorrectAnswers="numberOfCorrectAnswers"
-			/>
+			/> -->
 		</ion-content>
 	</ion-page>
 </template>
@@ -80,7 +80,9 @@
 	//dat de quiz uit de quizes array wordt gehaald op basis van het id
 	const quiz = computed(() => quizes.value.find((quiz) => quiz.id === quizId));
 	const currentQuestionIndex = ref(0);
+	const numberOfCorrectAnswers = ref(0);
 	const showResult = ref(false);
+	const selectedOption = ref(null);
 
 	// aantal vragen
 	const questionLength = computed(
@@ -97,10 +99,10 @@
 			numberOfCorrectAnswers.value++;
 		}
 
-		if (quiz.questions.length - 1 === currentQuestionIndex.value) {
+		if (quiz.questions && quiz.questions.length - 1 === currentQuestionIndex.value) {
 			showResult.value = true;
 		}
-
 		currentQuestionIndex.value++;
+		selectedOption.value = null;
 	};
 </script>
