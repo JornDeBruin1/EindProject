@@ -38,11 +38,12 @@
 				:question="quiz.questions[currentQuestionIndex]"
 				@selectOption="onOptionSelected"
 			/>
-			<!-- <Result
+			<Result
 				v-else
 				:quizQuestionlength="quiz.questions.length"
 				:numberOfCorrectAnswers="numberOfCorrectAnswers"
-			/> -->
+				:userAnswers="userAnswers"
+			/>
 		</ion-content>
 	</ion-page>
 </template>
@@ -51,10 +52,11 @@
 	//alle imports
 	import Question from '../components/Question.vue';
 	import QuizHeader from '../components/QuizHeader.vue';
+	import Result from '../components/Result.vue';
 	import q from '@/data/quiz.json';
 	import { useRoute } from 'vue-router';
 	import { home, heart, cog } from 'ionicons/icons';
-	import { ref, computed, watch } from 'vue';
+	import { ref, computed } from 'vue';
 	import {
 		IonButtons,
 		IonMenu,
@@ -82,7 +84,8 @@
 	const currentQuestionIndex = ref(0);
 	const numberOfCorrectAnswers = ref(0);
 	const showResult = ref(false);
-	const selectedOption = ref(null);
+	//sla de gegeven antwoorden op
+	const userAnswers = ref([]);
 
 	// aantal vragen
 	const questionLength = computed(
@@ -94,15 +97,25 @@
 		() => `${currentQuestionIndex.value + 1}/${quiz.value.questions.length || 0}`
 	);
 
-	const onOptionSelected = (isCorrect) => {
+	const onOptionSelected = (isCorrect, selectedOption) => {
+		const currentQuestion = quiz.value.questions[currentQuestionIndex.value];
+		const correctOption = currentQuestion.options.find((option) => option.isCorrect);
+
+		userAnswers.value.push({
+			question: currentQuestion,
+			selectedOption: selectedOption,
+			correctOption: correctOption,
+			isCorrect: isCorrect,
+		});
+
 		if (isCorrect) {
 			numberOfCorrectAnswers.value++;
 		}
 
-		if (quiz.questions && quiz.questions.length - 1 === currentQuestionIndex.value) {
+		if (quiz.value.questions.length - 1 === currentQuestionIndex.value) {
 			showResult.value = true;
+		} else {
+			currentQuestionIndex.value++;
 		}
-		currentQuestionIndex.value++;
-		selectedOption.value = null;
 	};
 </script>
