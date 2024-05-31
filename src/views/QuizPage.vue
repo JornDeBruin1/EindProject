@@ -90,7 +90,7 @@
 	const numberOfCorrectAnswers = ref(0);
 	const showResult = ref(false);
 
-	// Store user answers
+	// ArrayList voor antwoorden
 	const userAnswers = ref([]);
 
 	// Total number of questions
@@ -99,10 +99,12 @@
 	// Current question number (1-based index)
 	const currentQuestionNumber = computed(() => currentQuestionIndex.value + 1);
 
+	// handeling als er een optie wordt geselecteerd
 	const onOptionSelected = (isCorrect, selectedOption) => {
 		const currentQuestion = quiz.value.questions[currentQuestionIndex.value];
 		const correctOption = currentQuestion.options.find((option) => option.isCorrect);
 
+		//antwoorden in een array list
 		userAnswers.value.push({
 			question: currentQuestion,
 			selectedOption: selectedOption,
@@ -110,10 +112,12 @@
 			isCorrect: isCorrect,
 		});
 
+		//kijken of antwoord goed is
 		if (isCorrect) {
 			numberOfCorrectAnswers.value++;
 		}
 
+		// kijken of alle vragen geweest zijn zo ja show de result page zo niet ga naar de volgende vraag
 		if (quiz.value.questions.length - 1 === currentQuestionIndex.value) {
 			showResult.value = true;
 		} else {
