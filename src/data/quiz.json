@@ -115,6 +115,36 @@
 			},
 			{
 				"id": 3,
+				"title": "Wat is de grootste oceaan te wereld",
+				"options": [
+					{
+						"id": 1,
+						"label": "A",
+						"text": "Atlantische Oceaan",
+						"isCorrect": false
+					},
+					{
+						"id": 2,
+						"label": "B",
+						"text": "Indische Oceaan",
+						"isCorrect": false
+					},
+					{
+						"id": 3,
+						"label": "C",
+						"text": "Noordelijke IJszee",
+						"isCorrect": false
+					},
+					{
+						"id": 4,
+						"label": "D",
+						"text": "De Grote of Stille Oceaan",
+						"isCorrect": true
+					}
+				]
+			},
+			{
+				"id": 3,
 				"title": "Welke Europese hoofdstad heeft als bijnaam 'de eeuwige stad'? ",
 				"options": [
 					{

@@ -7,18 +7,18 @@
 		</ion-header>
 		<ion-content>
 			<div class="m-6 text-2xl flex flex-wrap flex-col">
-				<a class="text-black" href="/tabs/home"
-					><ion-icon class="pr-4" aria-hidden="true" :icon="home"></ion-icon>
+				<a class="text-black" href="/tabs/home">
+					<ion-icon class="pr-4" aria-hidden="true" :icon="home"></ion-icon>
 					<ion-label class="text-2xl">Home</ion-label>
 				</a>
-				<a class="text-black" href="/tabs/favorite"
-					><ion-icon class="pr-4" aria-hidden="true" :icon="heart"></ion-icon>
+				<a class="text-black" href="/tabs/favorite">
+					<ion-icon class="pr-4" aria-hidden="true" :icon="heart"></ion-icon>
 					<ion-label class="text-2xl">Favorite</ion-label>
 				</a>
-				<a class="text-black" href="/tabs/setting"
-					><ion-icon class="pr-4" aria-hidden="true" :icon="cog"></ion-icon>
-					<ion-label class="text-2xl">Settings</ion-label></a
-				>
+				<a class="text-black" href="/tabs/setting">
+					<ion-icon class="pr-4" aria-hidden="true" :icon="cog"></ion-icon>
+					<ion-label class="text-2xl">Settings</ion-label>
+				</a>
 			</div>
 		</ion-content>
 	</ion-menu>
@@ -32,7 +32,11 @@
 			</ion-toolbar>
 		</ion-header>
 		<ion-content :fullscreen="true">
-			<QuizHeader :CurrentQuestion="CurrentQuestion" :questionLength="questionLength" />
+			<QuizHeader
+				:CurrentQuestion="currentQuestionNumber"
+				:questionLength="totalQuestions"
+				:showResult="showResult"
+			/>
 			<Question
 				v-if="!showResult"
 				:question="quiz.questions[currentQuestionIndex]"
@@ -49,7 +53,7 @@
 </template>
 
 <script setup>
-	//alle imports
+	// All imports
 	import Question from '../components/Question.vue';
 	import QuizHeader from '../components/QuizHeader.vue';
 	import Result from '../components/Result.vue';
@@ -75,27 +79,25 @@
 		IonLabel,
 	} from '@ionic/vue';
 
-	//id uit de route halen
+	// Get ID from route
 	const route = useRoute();
 	const quizId = parseInt(route.params.id);
 	const quizes = ref(q);
-	//dat de quiz uit de quizes array wordt gehaald op basis van het id
+
+	// Get quiz based on ID
 	const quiz = computed(() => quizes.value.find((quiz) => quiz.id === quizId));
 	const currentQuestionIndex = ref(0);
 	const numberOfCorrectAnswers = ref(0);
 	const showResult = ref(false);
-	//sla de gegeven antwoorden op
+
+	// Store user answers
 	const userAnswers = ref([]);
 
-	// aantal vragen
-	const questionLength = computed(
-		() => `${currentQuestionIndex.value + 1}/${quiz.value.questions.length || 0}`
-	);
+	// Total number of questions
+	const totalQuestions = computed(() => quiz.value.questions.length);
 
-	//huidige vraag
-	const CurrentQuestion = computed(
-		() => `${currentQuestionIndex.value + 1}/${quiz.value.questions.length || 0}`
-	);
+	// Current question number (1-based index)
+	const currentQuestionNumber = computed(() => currentQuestionIndex.value + 1);
 
 	const onOptionSelected = (isCorrect, selectedOption) => {
 		const currentQuestion = quiz.value.questions[currentQuestionIndex.value];

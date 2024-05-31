@@ -12,17 +12,17 @@
 						<h3>Question {{ index + 1 }}: {{ answer.question.title }}</h3>
 						<p>
 							Your answer:
-							<p class="font-bold"
+							<strong
 								:class="{
 									'text-green-500': answer.isCorrect,
 									'text-red-500': !answer.isCorrect,
 								}"
-								>{{ answer.selectedOption.text }}</p
+								>{{ answer.selectedOption.text }}</strong
 							>
 						</p>
 						<p v-if="!answer.isCorrect">
 							Correct answer:
-							<p class="font-bold">{{ answer.correctOption.text }}</p>
+							<strong>{{ answer.correctOption.text }}</strong>
 						</p>
 					</ion-label>
 				</ion-item>
