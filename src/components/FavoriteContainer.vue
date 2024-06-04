@@ -5,7 +5,7 @@
 			<ion-card
 				v-for="quiz in favoriteQuizzes"
 				:key="quiz.id"
-				@click="navigateToQuiz()"
+				@click="navigateToQuiz(quiz.id)"
 				class="dark:bg-gray-800 m-0 py-6"
 			>
 				<img class="p-4" :src="quiz.img" alt="" />
@@ -38,6 +38,7 @@
 </template>
 <script setup>
 	import {
+		IonContent,
 		IonCard,
 		IonCardHeader,
 		IonCardTitle,
@@ -48,6 +49,7 @@
 	import { onMounted, ref } from 'vue';
 	import { heart } from 'ionicons/icons';
 	import { useStore } from 'vuex';
+	import { useRouter } from 'vue-router';
 
 	// krijg de data van quizzes uit de localstorage
 	let favoriteQuizzes = JSON.parse(localStorage.getItem('favoriteQuizzes')) || [];
@@ -59,6 +61,11 @@
 		store.dispatch('removeFavorite', quiz.id);
 		localStorage.removeItem(`quiz-${quiz.id}-isFavorite`);
 		location.reload();
+	};
+	const router = useRouter();
+
+	const navigateToQuiz = (quizId) => {
+		router.push(`/tabs/quiz/${quizId}`);
 	};
 	const isDarkModeEnabled = ref(false);
 	onMounted(() => {
