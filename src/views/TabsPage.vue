@@ -2,7 +2,7 @@
 	<ion-page>
 		<ion-tabs>
 			<ion-router-outlet></ion-router-outlet>
-			<ion-tab-bar>
+			<ion-tab-bar :class="{ 'dark-mode': isDarkModeEnabled }">
 				<ion-tab-button tab="Home" href="/tabs/home">
 					<ion-icon class="text-[31px]" aria-hidden="true" :icon="home" />
 					<ion-label class="pb-[9px] text-[19px]">Home</ion-label>
@@ -33,14 +33,21 @@
 		IonRouterOutlet,
 	} from '@ionic/vue';
 	import { home, heart, cog } from 'ionicons/icons';
-	import { watch } from 'vue';
-	import { useRoute } from 'vue-router';
-
+	import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+	import { onBeforeRouteLeave, useRoute } from 'vue-router';
+	const isDarkModeEnabled = ref(localStorage.getItem('darkMode') === 'true');
 	const route = useRoute();
-
-	watch(route, (newRoute, oldRoute) => {
-		if (newRoute.name !== oldRoute.name) {
+	//hier kijk ik of er naar de favorite page wordt gelinkt zo ja moet er een page refresh komen
+	watch(route, () => {
+		if (route.path === '/tabs/favorite') {
 			location.reload();
 		}
 	});
 </script>
+
+<style scoped>
+	.dark-mode {
+		--background: #1a2029;
+		--color: white;
+	}
+</style>

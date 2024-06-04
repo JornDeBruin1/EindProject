@@ -1,5 +1,5 @@
 <template>
-	<ion-app class="dark:text-white dark:bg-black">
+	<ion-app class="dark:text-white dark:bg-gray-800">
 		<ion-router-outlet />
 	</ion-app>
 </template>

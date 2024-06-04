@@ -1,23 +1,25 @@
 <template>
-	<div class="w-full">
-		<ion-card @click="navigateToQuiz()">
+	<div class="w-full dark:bg-gray-800">
+		<ion-card class="dark:bg-gray-800 m-0 py-6" @click="navigateToQuiz()">
 			<img class="p-4" :src="quiz.img" alt="" />
-			<ion-card-header>
-				<div class="text-white">
-					<ion-card-title>{{ quiz.name }}</ion-card-title>
+			<ion-card-header class="dark:bg-gray-800">
+				<div class="dark:bg-gray-800">
+					<ion-card-title class="dark:text-white">{{ quiz.name }}</ion-card-title>
 				</div>
-				<ion-card-subtitle>{{ quiz.name }}</ion-card-subtitle>
+				<ion-card-subtitle class="dark:text-white">{{ quiz.name }}</ion-card-subtitle>
 			</ion-card-header>
-			<ion-card-content class="flex">
-				<div class="w-1/2">{{ quiz.questions.length }} questions</div>
+			<ion-card-content class="flex dark:bg-gray-800">
+				<div class="w-1/2 dark:text-white">{{ quiz.questions.length }} questions</div>
 
-				<div class="w-1/2">
+				<div class="w-1/2 dark:bg-gray-800">
 					<div @click.stop="toggleFavorite()">
 						<ion-icon
 							class="text-[20px]"
 							aria-hidden="true"
 							:icon="heart"
-							:class="isQuizFavorite(quiz) ? 'text-red-500' : 'text-black'"
+							:class="
+								isQuizFavorite(quiz) ? 'text-red-500' : 'text-black : dark:text-white'
+							"
 							@click.stop="toggleFavorite"
 						></ion-icon>
 					</div>
@@ -59,11 +61,17 @@
 			props.favoriteQuizzes.includes(props.quiz.id) ||
 			localStorage.getItem(`quiz-${props.quiz.id}-isFavorite`) === 'true';
 	});
+
+	// roep de router van Vue aan
 	const router = useRouter();
 	const navigateToQuiz = () => {
 		router.push(`/tabs/quiz/${props.quiz.id}`);
 	};
+
+	//initialiseer de Vuex Store
 	const store = useStore();
+
+	//knop van heart icon voor hem op te slaan in de local storage
 	const toggleFavorite = () => {
 		if (!isFavorite.value) {
 			store.dispatch('addFavorite', props.quiz.id);

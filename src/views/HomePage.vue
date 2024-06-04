@@ -1,14 +1,14 @@
 <template>
-	<ion-page id="main-content" class="bg-gray-200">
-		<ion-header>
-			<ion-toolbar>
-				<ion-buttons>
+	<ion-page class="dark:bg-gray-800">
+		<ion-header class="dark:bg-gray-800">
+			<ion-toolbar :class="{ 'dark-background': isDarkModeEnabled }">
+				<ion-buttons class="dark:bg-gray-800">
 					<ion-menu-button></ion-menu-button>
 				</ion-buttons>
-				<ion-title>Quizzes</ion-title>
+				<ion-title class="dark:text-white">Quizzes</ion-title>
 			</ion-toolbar>
 		</ion-header>
-		<ion-content :fullscreen="true">
+		<ion-content :fullscreen="true" class="dark:bg-gray-800">
 			<HomeContainer
 				v-for="quiz in quizzes"
 				:key="quiz.id"
@@ -62,7 +62,10 @@
 			localStorage.setItem('favoriteQuizzes', JSON.stringify(favoriteQuizzes.value));
 		}
 	};
+	const isDarkModeEnabled = ref(false);
+
 	onMounted(() => {
+		//haal de quizzes uit de localstorage
 		const storedFavoriteQuizzes = localStorage.getItem('favoriteQuizzes');
 		if (storedFavoriteQuizzes) {
 			favoriteQuizzes.value = JSON.parse(storedFavoriteQuizzes);
@@ -70,11 +73,16 @@
 		quizzes.value.forEach((quiz) => {
 			quiz.isFavorite = favoriteQuizzes.value.includes(quiz.id);
 		});
+
+		//haal de dark mode uit de localstorage
+		const savedDarkModeSetting = JSON.parse(localStorage.getItem('darkMode'));
+		if (savedDarkModeSetting !== null) {
+			isDarkModeEnabled.value = savedDarkModeSetting;
+		}
 	});
 </script>
-<style scoped>
-	ion-toolbar {
-		--tw-bg-opacity: 1;
-		--background: rgb(229 231 235 / var(--tw-bg-opacity));
+<style>
+	.dark-background {
+		--background: none;
 	}
 </style>

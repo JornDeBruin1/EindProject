@@ -1,20 +1,21 @@
 import { ref, watchEffect } from 'vue';
 
 export default function useDarkMode() {
-	const isDarkModeEnabled = ref(false);
+	const isDarkModeEnabled = ref(localStorage.getItem('darkMode') === 'true');
 
 	watchEffect(() => {
-		document.documentElement.classList[isDarkModeEnabled.value ? 'add' : 'remove'](
-			'dark'
-		);
+		if (isDarkModeEnabled.value) {
+			document.documentElement.classList.add('dark');
+		} else {
+			document.documentElement.classList.remove('dark');
+		}
+
+		localStorage.setItem('darkMode', isDarkModeEnabled.value);
 	});
 
 	const toggleDarkMode = () => {
 		isDarkModeEnabled.value = !isDarkModeEnabled.value;
 	};
 
-	return {
-		isDarkModeEnabled,
-		toggleDarkMode,
-	};
+	return { isDarkModeEnabled, toggleDarkMode };
 }
