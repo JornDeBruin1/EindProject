@@ -2,10 +2,11 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import { createStore } from 'vuex';
-import storeConfig from './store/store.js'; // Assuming your store is in 'store/store.js'
+import storeConfig from './store/store.js';
 import './theme/tailwind.css';
 import { IonicVue } from '@ionic/vue';
 import useDarkMode from './useDarkMode';
+import './registerServiceWorker.js';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
 
@@ -21,6 +22,7 @@ import '@ionic/vue/css/text-alignment.css';
 import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
+
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
