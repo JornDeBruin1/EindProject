@@ -6,7 +6,7 @@
 	"display": "standalone",
 	"orientation": "portrait",
 	"scope": "/",
-	"start_url": "/tabs/home",
+	"start_url": "net24jbruin.gc-webhosting.nl/EindProject/tabs/home",
 	"icons": [
 		{
 			"src": "image/icons/icon-72x72.png",
