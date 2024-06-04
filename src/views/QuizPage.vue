@@ -1,21 +1,21 @@
 <template>
 	<ion-menu content-id="main-content">
-		<ion-header>
-			<ion-toolbar>
-				<ion-title>Quiz menu</ion-title>
+		<ion-header class="dark:bg-gray-800">
+			<ion-toolbar :class="{ 'dark-background': isDarkModeEnabled }">
+				<ion-title class="dark:text-white">Quiz menu</ion-title>
 			</ion-toolbar>
 		</ion-header>
-		<ion-content>
+		<ion-content :class="{ 'dark-page': isDarkModeEnabled }">
 			<div class="m-6 text-2xl flex flex-wrap flex-col">
-				<a class="text-black" href="/tabs/home">
+				<a class="text-black dark:text-white" href="/tabs/home">
 					<ion-icon class="pr-4" aria-hidden="true" :icon="home"></ion-icon>
 					<ion-label class="text-2xl">Home</ion-label>
 				</a>
-				<a class="text-black" href="/tabs/favorite">
+				<a class="text-black dark:text-white" href="/tabs/favorite">
 					<ion-icon class="pr-4" aria-hidden="true" :icon="heart"></ion-icon>
 					<ion-label class="text-2xl">Favorite</ion-label>
 				</a>
-				<a class="text-black" href="/tabs/setting">
+				<a class="text-black dark:text-white" href="/tabs/setting">
 					<ion-icon class="pr-4" aria-hidden="true" :icon="cog"></ion-icon>
 					<ion-label class="text-2xl">Settings</ion-label>
 				</a>
@@ -23,15 +23,15 @@
 		</ion-content>
 	</ion-menu>
 	<ion-page id="main-content">
-		<ion-header>
-			<ion-toolbar>
+		<ion-header class="dark:bg-gray-800">
+			<ion-toolbar :class="{ 'dark-background': isDarkModeEnabled }">
 				<ion-buttons>
-					<ion-menu-button></ion-menu-button>
+					<ion-menu-button class="dark:text-white"></ion-menu-button>
 				</ion-buttons>
-				<ion-title>Question</ion-title>
+				<ion-title class="dark:text-white">Question</ion-title>
 			</ion-toolbar>
 		</ion-header>
-		<ion-content :fullscreen="true">
+		<ion-content :fullscreen="true" :class="{ 'dark-page': isDarkModeEnabled }">
 			<QuizHeader
 				:CurrentQuestion="currentQuestionNumber"
 				:questionLength="totalQuestions"
@@ -60,7 +60,7 @@
 	import q from '@/data/quiz.json';
 	import { useRoute } from 'vue-router';
 	import { home, heart, cog } from 'ionicons/icons';
-	import { ref, computed } from 'vue';
+	import { ref, computed, onMounted } from 'vue';
 	import {
 		IonButtons,
 		IonMenu,
@@ -124,4 +124,21 @@
 			currentQuestionIndex.value++;
 		}
 	};
+
+	const isDarkModeEnabled = ref(false);
+	onMounted(() => {
+		//haal de dark mode uit de localstorage
+		const savedDarkModeSetting = JSON.parse(localStorage.getItem('darkMode'));
+		if (savedDarkModeSetting !== null) {
+			isDarkModeEnabled.value = savedDarkModeSetting;
+		}
+	});
 </script>
+<style>
+	.dark-background {
+		--background: none;
+	}
+	.dark-page {
+		--background: #111827;
+	}
+</style>
