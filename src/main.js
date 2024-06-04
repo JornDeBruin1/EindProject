@@ -1,9 +1,11 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
+import { createStore } from 'vuex';
+import storeConfig from './store/store.js'; // Assuming your store is in 'store/store.js'
 import './theme/tailwind.css';
 import { IonicVue } from '@ionic/vue';
-
+import useDarkMode from './useDarkMode';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
 
@@ -38,8 +40,22 @@ import '@ionic/vue/css/display.css';
 
 
 /* Theme variables */
+const store = createStore(storeConfig); // Create Vuex store
+const app = createApp(App).use(IonicVue).use(router).use(store);
 
-const app = createApp(App).use(IonicVue).use(router);
+const { isDarkModeEnabled, toggleDarkMode } = useDarkMode();
+
+app.provide('isDarkModeEnabled', isDarkModeEnabled);
+app.provide('toggleDarkMode', toggleDarkMode);
+
+router.beforeEach((to, from, next) => {
+	// Load favorite quizzes from local storage into Vuex store
+	const storedFavoriteQuizzes = localStorage.getItem('favoriteQuizzes');
+	if (storedFavoriteQuizzes) {
+		store.dispatch('loadFavorites', JSON.parse(storedFavoriteQuizzes));
+	}
+	next();
+});
 
 router.isReady().then(() => {
 	app.mount('#app');

@@ -3,7 +3,8 @@
 		"id": 1,
 		"img": "/image/sport.png",
 		"name": "Sport",
-		"questions": []
+		"questions": [],
+		"isFavorite": false
 	},
 	{
 		"id": 2,
@@ -40,13 +41,15 @@
 					}
 				]
 			}
-		]
+		],
+		"isFavorite": false
 	},
 	{
 		"id": 3,
 		"img": "/image/algemene-kennis.jpg",
 		"name": "Algemene kennis",
-		"questions": []
+		"questions": [],
+		"isFavorite": false
 	},
 	{
 		"id": 4,
@@ -173,12 +176,14 @@
 					}
 				]
 			}
-		]
+		],
+		"isFavorite": false
 	},
 	{
 		"id": 5,
 		"img": "/image/film.jpg",
 		"name": "Film",
-		"questions": []
+		"questions": [],
+		"isFavorite": false
 	}
 ]

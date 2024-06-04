@@ -33,4 +33,14 @@
 		IonRouterOutlet,
 	} from '@ionic/vue';
 	import { home, heart, cog } from 'ionicons/icons';
+	import { watch } from 'vue';
+	import { useRoute } from 'vue-router';
+
+	const route = useRoute();
+
+	watch(route, (newRoute, oldRoute) => {
+		if (newRoute.name !== oldRoute.name) {
+			location.reload();
+		}
+	});
 </script>
