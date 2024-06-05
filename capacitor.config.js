@@ -1,6 +1,6 @@
 export default {
-	appId: 'com.example.app',
-	appName: 'ExampleApp',
-	webDir: 'www',
+	appId: 'io.ionic.starter',
+	appName: 'Eind_project',
+	webDir: 'dist',
 	bundledWebRuntime: false,
 };
