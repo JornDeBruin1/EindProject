@@ -1,5 +1,5 @@
 <template>
-	<ion-card class="dark:bg-gray-800">
+	<ion-card class="dark:bg-gray-800 mt-[-5px]">
 		<ion-card-content>
 			<ion-item :class="{ 'dark-radio': isDarkModeEnabled }">
 				<ion-label class="dark:text-white"
