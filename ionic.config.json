@@ -1,7 +1,17 @@
 {
-  "name": "Eind_project",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "vue-vite"
+	"name": "Eind_project",
+	"integrations": {
+		"capacitor": {
+			"webDir": "dist",
+			"android": {
+				"webDir": "dist",
+				"allowMixedContent": true
+			},
+			"ios": {
+				"webDir": "dist",
+				"allowMixedContent": true
+			}
+		}
+	},
+	"type": "vue-vite"
 }
