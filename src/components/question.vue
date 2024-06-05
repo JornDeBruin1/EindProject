@@ -22,6 +22,7 @@
 </template>
 
 <script setup>
+	//imports
 	import {
 		IonCard,
 		IonItem,
