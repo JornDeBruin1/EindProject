@@ -2,7 +2,7 @@
 	"name": "Eind_project",
 	"integrations": {
 		"capacitor": {
-			"webDir": "dist",
+			"webDir": "www",
 			"android": {
 				"webDir": "dist",
 				"allowMixedContent": true
