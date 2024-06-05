@@ -1,12 +1,12 @@
 {
-	"appId": "com.example.app",
-	"appName": "Eind_project",
-	"bundledWebRuntime": false,
-	"webDir": "www",
-	"android": {
-		"allowMixedContent": true
-	},
-	"ios": {
-		"allowMixedContent": true
-	}
+  "appId": "com.example.app",
+  "appName": "Eind_project",
+  "bundledWebRuntime": false,
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": true
+  },
+  "ios": {
+    "allowMixedContent": true
+  }
 }
